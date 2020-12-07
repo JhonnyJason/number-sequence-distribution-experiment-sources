@@ -1,11 +1,6 @@
 mainprocessmodule = {name: "mainprocessmodule"}
-
-#region modulesFromEnvironment
-cfg = null
-#endregion
-
-#region logPrintFunctions
 ##############################################################################
+#region logPrintFunctions
 log = (arg) ->
     if allModules.debugmodule.modulesToDebug["mainprocessmodule"]?  then console.log "[mainprocessmodule]: " + arg
     return
@@ -13,18 +8,30 @@ olog = (o) -> log "\n" + ostr(o)
 ostr = (o) -> JSON.stringify(o, null, 4)
 print = (arg) -> console.log(arg)
 #endregion
+
 ##############################################################################
-mainprocessmodule.initialize = () ->
+#region modulesFromEnvironment
+distributionTester = null
+compressionTester = null
+cfg = null
+#endregion
+
+##############################################################################
+mainprocessmodule.initialize = ->
     log "mainprocessmodule.initialize"
+    distributionTester = allModules.distributiontestmodule
+    compressionTester = allModules.compressiontestmodule
     cfg = allModules.configmodule
     return 
 
-#region internalFunctions
-#endregion
 
+##############################################################################
 #region exposedFunctions
-mainprocessmodule.execute = () ->
+mainprocessmodule.execute = (args) ->
     log "mainprocessmodule.execute"
+    # distributionTester.runTest()
+    compressionTester.runTest()
+    
     return
 #endregion
 

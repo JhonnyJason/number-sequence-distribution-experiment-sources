@@ -1,5 +1,6 @@
 cliargumentsmodule = {name: "cliargumentsmodule"}
 
+##############################################################
 #region node_modules
 meow = require("meow")
 #endregion
@@ -14,6 +15,7 @@ cliargumentsmodule.initialize = () ->
     log "cliargumentsmodule.initialize"
     return
 
+##############################################################
 #region internal functions
 getHelpText = ->
     log "getHelpText"
@@ -48,6 +50,7 @@ extractMeowed = (meowed) ->
 
 #endregion
 
+##############################################################
 #region exposed functions
 cliargumentsmodule.extractArguments = ->
     log "cliargumentsmodule.extractArguments"

@@ -34,23 +34,14 @@ startupmodule.initialize = () ->
     cliArguments = allModules.cliargumentsmodule
     return
 
-#region internalFunctions
-printBanner = ->
-    clear()
-    print(
-        chalk.green(
-            figlet.textSync(cfg.cli.name, { horizontalLayout: 'full' })
-        )
-    )
-#endregion
 
+##############################################################################
 #region exposedFunctions
 startupmodule.cliStartup = ->
     log "startupmodule.cliStartup"
-    printBanner()
     try
         e = cliArguments.extractArguments()
-        await mainProcess.execute()
+        await mainProcess.execute(e)
         printSuccess('All done!');
     catch err
         printError("Error!")
